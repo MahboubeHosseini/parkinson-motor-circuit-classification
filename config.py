@@ -5,17 +5,15 @@ Contains all configuration parameters and constants used throughout the project.
 
 import os
 
-# Data paths configuration - Set these environment variables or update the paths
-DATA_ROOT = os.getenv('PARKINSON_DATA_ROOT', 'path/to/your/data')
-
+# Data paths configuration
 METADATA_PATHS = {
-    'td': os.path.join(DATA_ROOT, 'TD_metadata.xlsx'),
-    'pigd': os.path.join(DATA_ROOT, 'PIGD_metadata.xlsx')
+    'td': r'C:\Your\Path\To\Data\TD_metadata.xlsx',
+    'pigd': r'C:\Your\Path\To\Data\PIGD_metadata.xlsx'
 }
 
 BASE_PATHS = {
-    'td': os.path.join(DATA_ROOT, 'TD'),
-    'pigd': os.path.join(DATA_ROOT, 'PIGD')
+    'td': r'C:\Your\Path\To\Data\TD',
+    'pigd': r'C:\Your\Path\To\Data\PIGD'
 }
 
 # ROI list for motor circuit analysis
@@ -25,7 +23,7 @@ MOTOR_ROI = [
 ]
 
 # Analysis parameters
-SAMPLE_SIZE = 65 
+SAMPLE_SIZE = 65
 RANDOM_SEED = 42
 N_SPLITS = 5
 
