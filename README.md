@@ -24,22 +24,6 @@ This repository contains the implementation of our comprehensive analysis compar
 - **Cross-center validation**: Results generalize across different imaging centers
 - **Comprehensive analysis**: Tested across 6 classifiers with consistent superiority patterns
 
-## 🗂️ Repository Structure
-
-```
-📦 Motor-Circuit-PD-Classification/
-├── 📜 config.py              # Configuration settings and parameters
-├── 📜 utils.py               # Dataset classes and utility functions
-├── 📜 analysis.py            # Analysis class and chord diagram functions
-├── 📜 main.py                # Main execution script
-├── 📜 requirements.txt       # Python dependencies
-├── 📜 README.md             # This file
-└── 📁 outputs/              # Generated results and visualizations
-    ├── 📊 summary_metrics_table.csv
-    ├── 📈 detailed_classifier_metrics.xlsx
-    └── 🎯 comprehensive_motor_vs_single_chord_comparison.html
-```
-
 ## 🎯 What This Code Does
 
 This repository implements a comprehensive machine learning pipeline for **Parkinson's Disease (PD) subtype classification**, specifically distinguishing between:
@@ -241,22 +225,6 @@ SCENARIOS = {...}         # Add/modify feature engineering scenarios
 - Naive Bayes
 - Multi-Layer Perceptron (MLP)
 
-## 📈 Results
-
-### Performance Summary
-
-- **Motor-Circuit-Features Win Rate**: 73.6% across all scenarios and classifiers
-- **Statistical Significance**: 42.9% of comparisons show p < 0.05
-- **Effect Sizes**: 28.6% demonstrate large effect sizes (|d| ≥ 0.5)
-- **Best Scenario**: Enhanced + Robust scaling with k=15 feature selection
-
-### Key Outputs
-
-1. **Interactive Chord Diagram**: Side-by-side comparison of feature consistency between Motor-Circuit and Single-ROI approaches
-2. **Comprehensive Metrics**: Detailed performance tables across all scenarios and classifiers
-3. **Statistical Analysis**: Paired comparisons with effect sizes and significance tests
-4. **Feature Importance**: Advanced methods for all classifiers with consistency analysis
-
 ## 🔧 Technical Features
 
 ### Data Leakage Prevention
@@ -275,22 +243,6 @@ SCENARIOS = {...}         # Add/modify feature engineering scenarios
 - **Specialized handling**: Custom methods for Neural Networks and Naive Bayes
 - **Consistency analysis**: Jaccard similarity across scenarios and classifiers
 
-## 📊 Visualizations
-
-### Interactive Chord Diagram
-The repository generates a comprehensive chord diagram showing:
-- **36 nodes** per feature type (6 scenarios × 6 classifiers)
-- **Side-by-side comparison** of Motor-Circuit vs Single-ROI consistency
-- **Interactive features**: Hover information, HD export, zoom capabilities
-- **Color-coded connections**: High (green), medium (orange), low (red) similarity
-
-### Statistical Plots
-- ROC curves across all scenarios
-- Precision-Recall curves
-- Calibration curves
-- Decision Curve Analysis (DCA)
-- Overfitting analysis heatmaps
-
 ## 🏥 Clinical Relevance
 
 ### PD Subtype Importance
@@ -303,14 +255,6 @@ The repository generates a comprehensive chord diagram showing:
 - **Putamen**: Differentially affected in PD subtypes
 - **Circuit relationships**: Capture pathophysiologically relevant patterns
 - **Asymmetric progression**: Reflects natural disease course
-
-## 🔮 Future Directions
-
-- **Longitudinal analysis**: Track feature evolution over time
-- **Multi-modal integration**: Combine with DTI, fMRI, or PET data
-- **Deep learning approaches**: Automated feature learning from raw images
-- **Clinical validation**: Prospective studies in clinical settings
-- **Treatment prediction**: Predict response to specific therapies
 
 ## 📚 Citation
 
@@ -342,20 +286,13 @@ pip install -e .
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgments
 
 - **Dataset**: Multi-center PD neuroimaging consortium
 - **Atlases**: Harvard-Oxford subcortical atlas, ATAG basal ganglia atlas
 - **Libraries**: scikit-learn, plotly, nibabel, and the broader Python scientific ecosystem
-
-## 📞 Contact
-
-For questions or collaboration opportunities, please contact:
-- **Primary Author**: [Your Name] - [email@domain.com]
-- **Institution**: [Your Institution]
-- **Lab Website**: [Your Lab URL]
 
 ---
 
