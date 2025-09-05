@@ -23,7 +23,7 @@ MOTOR_ROI = [
 ]
 
 # Analysis parameters
-SAMPLE_SIZE = 65
+SAMPLE_SIZE = 140
 RANDOM_SEED = 42
 N_SPLITS = 5
 
@@ -58,7 +58,7 @@ FEATURE_ENHANCEMENT_PARAMS = {
 
 # Output configuration
 OUTPUT_CONFIG = {
-    'dpi': 300,
+    'dpi': 600,
     'figure_format': 'png',
     'excel_engine': 'openpyxl'
 }
