@@ -1,64 +1,109 @@
-مشکل این است که فرمت markdown درست نیست. بعضی بخش‌ها header نیستند و کدهای markdown صحیح ندارند. این نسخه اصلاح شده است:
-
-```markdown
-# Cross-Regional Radiomics for Parkinson's Disease Motor Subtyping
+# Motor-Circuit vs Single-ROI Features for Parkinson's Disease Subtype Classification
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Paper](https://img.shields.io/badge/paper-preprint-orange.svg)](#)
 
-A machine learning framework for distinguishing Parkinson's disease motor subtypes (tremor-dominant vs. postural instability gait difficulty) using novel cross-regional brain features.
+## 🧠 Overview
 
-## Overview
+This repository contains the implementation of our comprehensive analysis comparing **Motor-Circuit-Features** versus traditional **Single-ROI-Features** for Parkinson's disease (PD) subtype classification. Our study demonstrates that novel motor circuit-based features, when properly enhanced through sophisticated feature engineering, provide superior discriminative performance for distinguishing between tremor-dominant (TD) and postural instability gait difficulty (PIGD) subtypes.
 
-This repository implements a comprehensive analysis comparing **Motor-Circuit Features** (capturing relationships between brain regions) versus traditional **Single-ROI Features** (analyzing regions independently) for Parkinson's disease subtype classification.
+## 🔬 Research Highlights
 
-**Key Finding**: Motor-circuit features significantly outperform single-region approaches when enhanced through proper feature engineering (AUC: 0.821±0.117 vs 0.650±0.220, p=0.0012).
+- **Novel Motor-Circuit-Features**: Comprehensive feature set capturing cross-regional relationships within the basal ganglia-thalamocortical circuit
+- **Multi-Scenario Analysis**: Systematic evaluation across 6 distinct feature engineering scenarios
+- **Asymmetry Features**: 24 specialized features capturing the inherent asymmetric nature of PD pathology
+- **Rigorous Validation**: Center-based cross-validation ensuring real-world clinical generalizability
+- **Interactive Visualizations**: Combined chord diagrams showing feature consistency analysis
 
-## Installation
+## 📊 Key Findings
 
+- **Motor-Circuit-Features** demonstrate superior performance over traditional Single-ROI-Features
+- **Feature engineering is crucial**: Raw features show limited discriminative power due to noise contamination
+- **Optimal configuration**: Enhanced features with robust scaling and feature selection (k=15) achieve best performance
+- **Cross-center validation**: Results generalize across different imaging centers
+- **Comprehensive analysis**: Tested across 6 classifiers with consistent superiority patterns
+
+## 🎯 What This Code Does
+
+This repository implements a comprehensive machine learning pipeline for **Parkinson's Disease (PD) subtype classification**, specifically distinguishing between:
+
+- **Tremor-Dominant (TD)**: Patients with predominant tremor symptoms
+- **Postural Instability Gait Difficulty (PIGD)**: Patients with balance and gait problems
+
+### 🔬 Core Innovation
+
+The main contribution is demonstrating that **Motor-Circuit-Features** (capturing relationships between brain regions) outperform traditional **Single-ROI-Features** (analyzing regions independently) when properly enhanced through sophisticated feature engineering.
+
+### 🧠 Scientific Rationale
+
+**Why Motor-Circuit-Features?**
+- PD affects the **basal ganglia-thalamocortical circuit** as a network
+- Different subtypes show **distinct circuit dysfunction patterns**
+- Traditional approaches ignore **cross-regional relationships**
+- Circuit-based features capture **pathophysiologically relevant** information
+
+### 🚀 Complete Usage Guide
+
+#### Step 1: Installation & Setup
+
+**1.1 Clone the repository:**
 ```bash
-git clone https://github.com/yourusername/parkinson-motor-circuit-classification.git
-cd parkinson-motor-circuit-classification
+git clone https://github.com/yourusername/Motor-Circuit-PD-Classification.git
+cd Motor-Circuit-PD-Classification
+```
+
+**1.2 Install dependencies:**
+```bash
 pip install -r requirements.txt
 ```
 
-## Data Structure
+#### Step 2: Prepare Your Data
 
-Your data should be organized as follows:
-
+**2.1 Create folder structure:**
 ```
-Your-Data-Folder/
-├── TD/                              # Tremor-Dominant patients
-│   ├── 001/                         # Patient ID folder
-│   │   └── T1/                      # T1-weighted images
-│   │       ├── 001.nii.gz           # Main T1 image
-│   │       └── w_thrp/              # ROI masks folder
-│   │           └── Subject/         
-│   │               ├── L_Pu.nii.gz  # Left Putamen
-│   │               ├── R_Pu.nii.gz  # Right Putamen
-│   │               ├── L_CN.nii.gz  # Left Caudate
-│   │               ├── R_CN.nii.gz  # Right Caudate
-│   │               ├── L_Pa.nii.gz  # Left Pallidum
-│   │               ├── R_Pa.nii.gz  # Right Pallidum
-│   │               ├── L_SN.nii.gz  # Left Substantia Nigra
-│   │               └── R_SN.nii.gz  # Right Substantia Nigra
-├── PIGD/                            # PIGD patients (same structure)
-├── TD_metadata.xlsx                 # TD patient metadata
-└── PIGD_metadata.xlsx              # PIGD patient metadata
+📦 Your-Data-Folder/
+├── 📁 TD/                              # Tremor-Dominant patients
+│   ├── 📁 001/                         # Patient ID folder
+│   │   └── 📁 T1/                      # T1-weighted images
+│   │       ├── 📄 001.nii.gz           # Main T1 image
+│   │       └── 📁 w_thrp/              # Processed masks
+│   │           └── 📁 Subject/         # Subject-specific masks
+│   │               ├── 📄 L_Pu.nii.gz  # Left Putamen
+│   │               ├── 📄 R_Pu.nii.gz  # Right Putamen
+│   │               ├── 📄 L_CN.nii.gz  # Left Caudate
+│   │               ├── 📄 R_CN.nii.gz  # Right Caudate
+│   │               ├── 📄 L_Pa.nii.gz  # Left Pallidum
+│   │               ├── 📄 R_Pa.nii.gz  # Right Pallidum
+│   │               ├── 📄 L_SN.nii.gz  # Left Substantia Nigra
+│   │               └── 📄 R_SN.nii.gz  # Right Substantia Nigra
+│   └── 📁 002/, 📁 003/, ...           # More patients
+├── 📁 PIGD/                            # PIGD patients (same structure)
+├── 📄 TD_metadata.xlsx                 # TD metadata
+└── 📄 PIGD_metadata.xlsx              # PIGD metadata
 ```
 
-**Metadata files must contain:**
+**2.2 Create Excel metadata files:**
 
+**TD_metadata.xlsx & PIGD_metadata.xlsx must contain:**
 | SUBJECT | SCANNER_MODEL | CENTER | AGE | SEX |
 |---------|---------------|--------|-----|-----|
-| 001 | Siemens_Skyra | Center_A | 65 | M |
-| 002 | Siemens_Prisma | Center_B | 72 | F |
+| 1 | Siemens_Skyra | Center_A | 45 | M |
+| 2 | GE_Discovery | Center_B | 67 | F |
+| 3 | Philips_Achieva | Center_A | 52 | M |
 
-## Configuration
+**Required columns:**
+- `SUBJECT`: Patient ID (must match folder name)
+- `SCANNER_MODEL`: MRI scanner model
+- `CENTER`: Imaging center name
+- `AGE`: Patient age
+- `SEX`: Patient gender (M/F)
 
-Edit `config.py` to set your data paths:
+#### Step 3: Configure Paths
 
+**3.1 Edit `config.py`:**
 ```python
+# Update lines 15-25 with your actual paths
 METADATA_PATHS = {
     'td': r'C:\Your\Path\To\Data\TD_metadata.xlsx',
     'pigd': r'C:\Your\Path\To\Data\PIGD_metadata.xlsx'
@@ -70,59 +115,62 @@ BASE_PATHS = {
 }
 ```
 
-## Usage
+#### Step 4: Run Analysis
 
-Run the complete analysis:
-
+**4.1 Execute complete analysis:**
 ```bash
 python main.py
 ```
 
-This will:
-1. Load data and extract features from both feature types
-2. Test 6 feature engineering scenarios
-3. Perform center-based cross-validation with 6 classifiers
-4. Generate comparison statistics and visualizations
+**4.2 What happens during execution:**
+1. **Data Loading**: Reads metadata and validates file paths
+2. **Feature Extraction**: Extracts Single-ROI and Motor-Circuit features
+3. **Multi-Scenario Testing**: Tests 6 different feature engineering approaches
+4. **Cross-Validation**: Performs center-based 5-fold cross-validation
+5. **Statistical Analysis**: Compares feature types with significance testing
+6. **Visualization Generation**: Creates interactive chord diagrams and tables
 
-## Output
+#### Step 5: Interpret Results
 
-The analysis generates:
-- `summary_metrics_table.csv`: Performance comparison across scenarios
-- `detailed_classifier_metrics.xlsx`: Detailed per-classifier results  
-- `comprehensive_motor_vs_single_chord_comparison.html`: Interactive feature consistency visualization
+**5.1 Generated files:**
+```
+📁 outputs/
+├── 📄 summary_metrics_table.csv                               # Main comparison table
+├── 📄 detailed_classifier_metrics.xlsx                        # Detailed per-classifier results
+└── 📄 comprehensive_motor_vs_single_chord_comparison.html     # Interactive visualization
+```
 
-## Methodology
+**5.2 Key outputs to examine:**
+- **CSV Table**: Shows Motor-Circuit vs Single-ROI performance across scenarios
+- **Excel File**: Detailed breakdown by classifier and feature type
+- **HTML Chord Diagram**: Interactive visualization of feature consistency
 
-**Single-ROI Features (48 features)**
-- 6 statistical measures from 8 bilateral motor regions
-- Traditional approach analyzing regions independently
+**5.3 Understanding results:**
+- **Win Rate**: Percentage of cases where Motor-Circuit features outperform Single-ROI
+- **Statistical Significance**: p-values from paired comparisons
+- **Effect Sizes**: Cohen's d values indicating practical significance
+- **Best Scenario**: Optimal feature engineering configuration
 
-**Motor-Circuit Features (60 features)**
-- Cross-regional ratios (putamen-substantia nigra, caudate-putamen)
-- Asymmetry indices across hemispheres
-- Circuit volume relationships
-- Shape and distribution patterns
+#### Step 6: Advanced Usage
 
-**Feature Engineering Scenarios**
-1. Raw Features (baseline)
-2. Raw + Preprocessing (robust scaling)
-3. Enhanced + Preprocessing (polynomial features, interactions)
-4. Enhanced + Robust (+ feature selection, k=15)
-5. Enhanced + Standard (alternative scaling)
-6. Enhanced + MinMax (alternative scaling)
+**6.1 Customize analysis parameters:**
+```python
+# In config.py, modify:
+SAMPLE_SIZE = 65          # Change sample size
+N_SPLITS = 5              # Modify cross-validation folds
+SCENARIOS = {...}         # Add/modify feature engineering scenarios
+```
 
-## Requirements
+**6.2 Add new classifiers:**
+```python
+# In config.py, add to CLASSIFIERS dict:
+'Your_Classifier': YourClassifier(param1=value1, random_state=42)
+```
 
-- Python 3.8+
-- scikit-learn
-- pandas
-- numpy
-- nibabel
-- plotly
-- openpyxl
-- scipy
 
-## Citation
+## 📚 Citation
+
+If you use this code or methodology in your research, please cite:
 
 ```bibtex
 @article{hosseini2024crossregional,
@@ -133,7 +181,12 @@ The analysis generates:
 }
 ```
 
-## License
+## 🤝 Contributing
 
-MIT License
-```
+We welcome contributions! Please feel free to submit issues, feature requests, or pull requests.
+
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
