@@ -172,7 +172,16 @@ SCENARIOS = {...}         # Add/modify feature engineering scenarios
 
 If you use this code or methodology in your research, please cite:
 
-Hosseini MS, Aghamiri SMR, Panahi M. Cross-regional radiomics: a novel framework for relationship-based feature extraction with validation in Parkinson's disease motor subtyping. BioData Mining. 2025. DOI: 10.1186/s13040-025-00483-4.
+Hosseini MS, Aghamiri SMR, Panahi M. Cross-regional radiomics: a novel framework for relationship-based feature extraction with validation in Parkinson's disease motor subtyping. BioData Mining. 2025. DOI: 10.1186/s13040-025-00483-4
+```bibtex
+@article{hosseini2025crossregional,
+  title={Cross-regional radiomics: a novel framework for relationship-based feature extraction with validation in Parkinson's disease motor subtyping},
+  author={Hosseini, Mahboube Sadat and Aghamiri, Seyyed Mahmoud Reza and Panahi, Mehdi},
+  journal={BioData Mining},
+  year={2025},
+  publisher={Springer},
+  doi={10.1186/s13040-025-00483-4}
+}
 
 
 ## 🤝 Contributing
